@@ -23,10 +23,10 @@ class Container {
             object.id = this.id++
 
             const checkProduct = await this.readTheFile()
-            const checkingId = checkProduct.some((e) => { e.title === object.title })
-            console.log(checkingId)
+            const checkingTitle = checkProduct.some((e) => { e.title === object.title })
+            console.log(checkingTitle)
 
-            if (!checkingId) {
+            if (!checkingTitle) {
                 this.objectArray.push(object)
                 await fs.promises.writeFile(this.file, JSON.stringify(this.objectArray))
                 console.log("object saved correctly", "id:", object.id)
