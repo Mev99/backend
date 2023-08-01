@@ -57,7 +57,7 @@ class Container {
 
     async getAll() {
         try {
-            console.log(await this.readTheFile())
+            await this.readTheFile()
         }
         catch (error) {
             console.log("Did not get em' all", error)
@@ -86,11 +86,13 @@ class Container {
 
 const container = new Container("products.json")
 
-const qwerty = { title: "title1", price: 50, thumbnail: "url/this/thumbnail.png" }
-const qwerty2 = { title: "title2", price: 100, thumbnail: "url/this/thumbnail.png" }
+const qwerty = { title: "title1", price: 50, thumbnail: "url/this/thumbnail1.png" }
+const qwerty2 = { title: "title2", price: 100, thumbnail: "url/this/thumbnail2.png" }
+const qwerty3 = { title: "title3", price: 150, thumbnail: "url/this/thumbnail3.png" }
 
-container.save(qwerty)
-container.save(qwerty2)
+// container.save(qwerty)
+// container.save(qwerty2)
+// container.save(qwerty3)
 
 // container.getProductById(2)
 
@@ -99,3 +101,5 @@ container.save(qwerty2)
 // container.deleteById(2)
 
 // container.deleteAll()
+
+module.exports = container

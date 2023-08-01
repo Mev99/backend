@@ -77,12 +77,27 @@
 
 // // managingProduct.getProductById(1)
 
-function mostrarLetras(string) {
-    let letrita = string
-    setInterval(() => {
-        letrita.length
-    }, 1000);
-}
+// function mostrarLetras(string) {
+//     let letrita = string
+//     setInterval(() => {
+//         letrita.length
+//     }, 1000);
+// }
 
 
-mostrarLetras('gilDeGoma')
+// mostrarLetras('gilDeGoma')
+
+//clase 5 ej
+// A- Crear un proyecto en node.js que genere 10000 números aleatorios en el rango  de 1 a 20.
+// B- Crear un objeto cuyas claves sean los números salidos y el valor asociado a cada clave será la cantidad de veces que salió dicho número. 
+// Representar por consola los resultados.
+
+// let numbers = []
+
+// for (let i = 0; i < 10; i++) {
+//     let randomizer = Math.random() * 20
+//     let floor = Math.floor(randomizer)
+//     numbers.push(floor)    
+// }
+
+// console.log(numbers)
