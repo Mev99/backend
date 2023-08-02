@@ -23,7 +23,7 @@ class Container {
             object.id = this.id++
 
             const checkProduct = await this.readTheFile()
-            const checkingId = checkProduct.some((e) => { e.id === object.id })
+            const checkingId = checkProduct.some((e) => e.id === object.id)
             console.log(checkingId)
 
             if (!checkingId) {
@@ -39,15 +39,16 @@ class Container {
         }
     }
 
+
     async getProductById(id) {
         try {
             const dataParsed = await this.readTheFile()
 
             const objectId = await dataParsed.find((e) => e.id === id)
             if (objectId) {
-                return console.log(objectId)
+                return objectId
             } else {
-                console.log(null)
+                return undefined
             }
         }
         catch (error) {
@@ -102,4 +103,4 @@ const qwerty3 = { title: "title3", price: 150, thumbnail: "url/this/thumbnail3.p
 
 // container.deleteAll()
 
-module.exports = container
+module.exports = Container
