@@ -1,6 +1,6 @@
-const fs = require("fs")
+import fs from "fs"
 
-class Container {
+export class Container {
     constructor(file) {
         this.file = file
         this.objectArray = []
@@ -83,13 +83,34 @@ class Container {
             console.log("couldn't erase the file")
         }
     }
+    
+
+    async updateProduct(id, updatedProduct) {
+        try {
+            let data = await this.readTheFile()
+            const locateItem = data.findIndex((e) => e.id === id)
+
+            if (locateItem !== -1) {
+                data[locateItem] = { ...data[locateItem], ...updatedProduct}
+                console.log('item updated')
+
+                return await fs.promises.writeFile(this.file, JSON.stringify(data)) 
+            } else{
+                console.log('error updating')
+            }
+        }
+        catch(error) {
+            console.log("error updating product", error)
+        }
+    }
 }
 
 const container = new Container("products.json")
 
-const qwerty = { title: "title1", price: 50, thumbnail: "url/this/thumbnail1.png" }
-const qwerty2 = { title: "title2", price: 100, thumbnail: "url/this/thumbnail2.png" }
-const qwerty3 = { title: "title3", price: 150, thumbnail: "url/this/thumbnail3.png" }
+const qwerty = { title: "title1", description: "description product1", code: "a1", status: true, stock: "50", category: "category a", price: 50, thumbnail: "url/this/thumbnail1.png" }
+const qwerty2 = { title: "title2", description: "description product 2", code: "a2", status: true, stock: "60", category: "category b", price: 50, thumbnail: "url/this/thumbnail2.png" }
+const qwerty3 = { title: "title3", description: "description product3", code: "a3", status: true, stock: "80", category: "category c", price: 50, thumbnail: "url/this/thumbnail3.png" }
+
 
 // container.save(qwerty)
 // container.save(qwerty2)
@@ -103,4 +124,6 @@ const qwerty3 = { title: "title3", price: 150, thumbnail: "url/this/thumbnail3.p
 
 // container.deleteAll()
 
-module.exports = Container
+// container.updateProduct(2, {title: "title4", description: "description product 4", code: "a4", status: true, stock: "60", category: "category b", price: 50, thumbnail: "url/this/thumbnail4.png" })
+
+export default Container
