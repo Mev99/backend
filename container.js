@@ -83,7 +83,7 @@ export class Container {
             console.log("couldn't erase the file")
         }
     }
-    
+
 
     async updateProduct(id, updatedProduct) {
         try {
@@ -91,15 +91,15 @@ export class Container {
             const locateItem = data.findIndex((e) => e.id === id)
 
             if (locateItem !== -1) {
-                data[locateItem] = { ...data[locateItem], ...updatedProduct}
+                data[locateItem] = { ...data[locateItem], ...updatedProduct }
                 console.log('item updated')
 
-                return await fs.promises.writeFile(this.file, JSON.stringify(data)) 
-            } else{
+                return await fs.promises.writeFile(this.file, JSON.stringify(data))
+            } else {
                 console.log('error updating')
             }
         }
-        catch(error) {
+        catch (error) {
             console.log("error updating product", error)
         }
     }

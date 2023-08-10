@@ -1,9 +1,20 @@
 import express from "express";
+import Cart from "../../cartClass.js";
 
 const router = express.Router()
+const cart = new Cart('cart.json', 'products.json')
 
-router.get("/api/carts", (req, res) => {
-    res.send('cart')
+router.post("/api/carts", async (req, res) => {
+
+    const letThereBeCart = await cart.createCart()
+
+    res.send(letThereBeCart)
+})
+
+router.get('/api/:cid', async (req, res) => {
+    const productId = req.params.cid
+
+    res.send()
 })
 
 export default router

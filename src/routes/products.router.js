@@ -39,7 +39,7 @@ router.put("/api/products/:pid", async (req, res) => {
     const bodyUpdate = req.body
 
     const updateProducts = container.updateProduct(pid, bodyUpdate)
-    
+
     res.send(`product with the id -${pid}- has been updated`)
 })
 
