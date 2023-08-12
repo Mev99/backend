@@ -13,8 +13,20 @@ router.post("/api/carts", async (req, res) => {
 
 router.get('/api/:cid', async (req, res) => {
     const productId = req.params.cid
-
-    res.send()
+    const getCart = await cart.getCartById(productId)
+    res.json(getCart)
 })
+
+
+router.post('/api/:cid/product/:pid', async (req, res) => {
+    const cartId = req.params.cid
+    const productId = req.params.pid
+
+    const saveProductInCart = await cart.findProductsId(cartId, productId)
+
+    res.send(saveProductInCart)
+
+})
+
 
 export default router

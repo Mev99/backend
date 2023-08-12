@@ -1,1 +1,35 @@
-[{"title":"title1","description":"description product1","code":"a1","status":true,"stock":"50","category":"category a","price":50,"thumbnail":"url/this/thumbnail1.png","id":1},{"title":"title2","description":"description product 2","code":"a2","status":true,"stock":"60","category":"category b","price":50,"thumbnail":"url/this/thumbnail2.png","id":2},{"title":"title3","description":"description product3","code":"a3","status":true,"stock":"80","category":"category c","price":50,"thumbnail":"url/this/thumbnail3.png","id":3}]
+[
+    {
+        "title": "title1",
+        "description": "description product1",
+        "code": "a1",
+        "status": true,
+        "stock": "50",
+        "category": "category a",
+        "price": 50,
+        "thumbnail": "url/this/thumbnail1.png",
+        "id": 1
+    },
+    {
+        "title": "title2",
+        "description": "description product 2",
+        "code": "a2",
+        "status": true,
+        "stock": "60",
+        "category": "category b",
+        "price": 50,
+        "thumbnail": "url/this/thumbnail2.png",
+        "id": 2
+    },
+    {
+        "title": "title3",
+        "description": "description product3",
+        "code": "a3",
+        "status": true,
+        "stock": "80",
+        "category": "category c",
+        "price": 50,
+        "thumbnail": "url/this/thumbnail3.png",
+        "id": 3
+    }
+]
