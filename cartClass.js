@@ -52,7 +52,7 @@ export class Cart {
     async getCartById(id) {
         try {
             const data = await this.readCartFile()
-            const getCartFromArray = data.filter((e) => e.id === id)
+            const getCartFromArray = data.find((e) => e.id === id)
             return getCartFromArray
         }
         catch (error) {
@@ -71,34 +71,48 @@ export class Cart {
         }
     }
 
-    async findProductsId(cId, pId) {
+    async updateCart(cId, pId) {
         try {
-            const data = await this.productsId()
-            const findData = data.find((e) => e === pId)
+            const dataProducts = await this.productsId()
+            const findDataProducts = dataProducts.find((e) => e === pId)
+
             const quantity = 1
-            const storeData = {id:findData, quantity: quantity}
+            const storeDataProducts = { id: findDataProducts, quantity: quantity }
 
+            const allDataCart = await this.readCartFile()
             const dataCart = await this.getCartById(cId)
-            console.log('dataCart= ', dataCart)
 
-            if (dataCart.length > 0) {
-                dataCart.forEach((e) => e.products.push(storeData))
-                console.log('dataCart 2= ', dataCart)
+            const indexOfDataCart = allDataCart.findIndex((e) => e.id === cId)
+
+            const isProductInCart = dataCart.products.some((e) => e.id === pId)
+
+            if (dataCart !== undefined && !isProductInCart && findDataProducts !== undefined) {
+                dataCart.products.push(storeDataProducts)
+
+                allDataCart[indexOfDataCart] = dataCart
+
+                await fs.promises.writeFile('cart.json', JSON.stringify(allDataCart))
+
+            } else if (dataCart !== undefined && isProductInCart && findDataProducts !== undefined) {
+                dataCart.products.forEach((e) => e.quantity += 1)
+                
+                allDataCart[indexOfDataCart] = dataCart
+
+                await fs.promises.writeFile('cart.json', JSON.stringify(allDataCart))
+            }else{
+                console.log('else')
             }
+
         } catch (error) {
-            console.log('error method findProductsId: ', error)
+            console.log('error method updateCart: ', error)
         }
     }
-
-
-
-
 }
 
 const cart = new Cart('cart.json', 'products.json')
 
 // cart.productsId(2)
 
-cart.findProductsId('zus5x8', 2)
-
+// cart.updateCart('zus5x8', 2)
+// cart.readProductFile()
 export default Cart
